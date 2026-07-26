@@ -1,9 +1,4 @@
-import re
-
-MESSAGE_PATTERN = re.compile(
-    r"\((.*?)\)\s+(\S+)\s+([0-9A-Fa-f]+)#([0-9A-Fa-f]*)\s*(\d*)"
-)
-
+from file_parser import parse_message
 
 def analyse_attack_file(log_file, attack_start, attack_end):
     complete_file_can_ids = set()
@@ -15,17 +10,17 @@ def analyse_attack_file(log_file, attack_start, attack_end):
 
     with open(log_file, "r", errors="ignore") as file:
         for line in file:
-            match = MESSAGE_PATTERN.match(line)
-            if match is None:
+            parsed = parse_message(line)
+            if parsed is None:
                 continue
-
-            timestamp = float(match.group(1))
-            can_id = match.group(3).upper()
-
+            
+            timestamp = parsed["timestamp"]    
+            can_id = parsed["can_id"]    
+            
             complete_file_can_ids.add(can_id)
             if attack_start <= timestamp <= attack_end:
                 attack_interval_can_ids.add(can_id)
-
+                
             message_count += 1
             if first_timestamp is None:
                 first_timestamp = timestamp
