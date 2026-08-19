@@ -80,12 +80,10 @@ https://drive.google.com/drive/folders/1XufzHBmagNbyTTXjKebQ90nN2zbgVsLe?usp=sha
 * CNN_Flag: embeddings + model
 
 [Only needed to retrian the SSL or rerun 03_Data_Preparation.ipynb] 
-
-Window Tensors / BenignWindows / AttackWindows
+* Window Tensors / BenignWindows / AttackWindows
 
 [Day1File2 for Benign EDA (regenerate by 02_Benign_EDA.ipynb if missing)]
-
-Bening_parquet
+* Bening_parquet
 
 ### IMPORTANT!
 In order to reproduce the exact same results it is important to run the notebooks only with the .npy embeddings. 
