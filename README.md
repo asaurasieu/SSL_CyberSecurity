@@ -52,33 +52,39 @@ Results in the notebooks were obtained with:
 
 ### Repository Layout 
 
-CNN_Flag/      Encoder: 2 conv layers, no dilation (abliation used in the limitations)
+CNN_Flag/ Encoder: 2 conv layers, no dilation (abliation used in the limitations)
+
 **main_notebooks/**   Main pipeline (EDA, Data Prep, SSL, XGboost)
-    - embeddings .npy files 
-    - models .pth files 
-    - SSL-CNN-30epoch file extended training for model comparison 
+
+* embeddings .npy files 
+* models .pth files 
+* SSL-CNN-30epoch file extended training for model comparison     
 
 Data/ CAN-MIRGU logs, metadata, precomputed windows 
+
 src/  Additional functions needed for the analysis in EDAs 
 
 requirements.txt 
 
-**CNN_Flag/ Is not the final model.** It is the first encoder which was trained on
-(two Conv1d layers no dilation). The final encoder is **main_notebooks/04_SSL_Model.ipynb**
+**CNN_Flag/ Is not the final model.** It is the first encoder which was trained (two Conv1d layers no dilation). 
+The final encoder is **main_notebooks/04_SSL_Model.ipynb**
 
-To reproduce the abliation metrics, do not retrain. Run main_notebooks/05_XGBoost_Evaluation.ipynb which loads the saved embeddings. 
+To reproduce the abliation metrics, do not retrain. 
+Run main_notebooks/05_XGBoost_Evaluation.ipynb which loads the saved embeddings. 
 
 ### Weights and .NPY files that exceed > 100MB Download through Google Drive 
 https://drive.google.com/drive/folders/1XufzHBmagNbyTTXjKebQ90nN2zbgVsLe?usp=sharing
 
-Pretrained weights (.pth) 
-XGBoost embeddings (.npy) 
-CNN_Flag: embeddings + model
+* Pretrained weights (.pth) 
+* XGBoost embeddings (.npy) 
+* CNN_Flag: embeddings + model
 
 [Only needed to retrian the SSL or rerun 03_Data_Preparation.ipynb] 
+
 Window Tensors / BenignWindows / AttackWindows
 
-[Day1File2 for Benign EDA (regenerate by 02_Benign_EDA.ipynb if missing) ]
+[Day1File2 for Benign EDA (regenerate by 02_Benign_EDA.ipynb if missing)]
+
 Bening_parquet
 
 ### IMPORTANT!
