@@ -1,0 +1,32 @@
+# Environment used for all notebooks in this project 
+# Python 3.13.9 (Anaconda, macOS, Apple Silicon, PyTorch MPS)
+#
+# Create a matching environment
+#   conda create -n ssl-can python=3.13.9 -y 
+#   conda activate ssl-can 
+#   pip install -r requirements.txt 
+
+# Then open Jupyter with that kernel 
+#   python -m ipykernel install --user --name ssl-can --display-name "ssl-can"
+#
+# PyTorch 2.7.1: pip will pick the version for the current OS 
+# Mac -> MPS/CPU. Windows without NVIDIA -> CPU. 
+# Windows with NVIDIA GPU: install torch==2.7.1 from https://pytorch.org
+#
+# For GPU training install PyTorch with the matching CUDA build from pytorch.org 
+# instead of the plain "torch" install below. 
+# For loading just the saved .pth/.npy files and rerunning XGBoost, CPU is fine 
+
+numpy==2.3.5
+pandas==2.3.3
+scipy==1.16.3
+scikit-learn==1.7.2
+xgboost==3.3.0 
+torch==2.7.1
+matplotlib==3.10.6
+tqdm==4.67.1
+json5==0.12.1
+pyarrow==21.0.0
+ipykernel==6.31.0 
+notebook==7.4.5
+jupyterlab==4.4.7 

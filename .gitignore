@@ -1,0 +1,10 @@
+.DS_Store
+**/__pycache__/
+Data/CAN_MIRGU_Attack_Logs/
+Data/CAN_MIRGU_Benign_Logs/
+Data/Benign_Windows/
+Data/Attack_Windows/
+Data/benign_can_data.parquet
+*.npy
+*.parquet
+*.pt
