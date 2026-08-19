@@ -1,4 +1,4 @@
-# A Self Supervised Learning Multiclass for CAN BUS Intrusion Detection 
+# Multiclass SSL Intrusion Detection for Automotive CAN 
 
 Master's thesis code for injection attacks on automotive CAN traffic
 using self supervised pretraining (masked reconstruction) with a downstream 
