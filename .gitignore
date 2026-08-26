@@ -7,4 +7,4 @@ Data/Attack_Windows/
 Data/benign_can_data.parquet
 *.npy
 *.parquet
-*.pt
+*.ptExtras_local/
