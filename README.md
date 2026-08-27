@@ -82,6 +82,7 @@ main_notebooks/                  Main pipeline (run in numeric order)
   ├─ models/                      Pretrained weights (.pth)  — on GitHub
   ├─ embeddings/                  SSL embeddings (.npy)      — from my Drive
   └─ cross_file_embeddings/       Cross-file embeddings      — from my Drive
+  └─ Baseline /                   Statistical Baseline (.npy) — from my Drive
 
 Data/                            Only Attacks_metadata.json on GitHub (rest from Drive)
 CNN_Flag/                        Comparison encoder (2 Conv1d, no dilation, 15 epochs)
