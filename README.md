@@ -22,18 +22,18 @@ python -m ipykernel install --user --name ssl-can --display-name "ssl-can"
 ---
 
 ## Main Structure 
-This project uses files from **two different Google Drives**.
+This project uses files from Original authors Drive and Dropbox.
 
 | What you need | Source | Link |
 |---|---|---|
 | **Raw `.log` files** (attack + benign) and `Attacks_metadata.json` | Original **CAN-MIRGU** dataset | https://drive.google.com/drive/folders/1uUKLEu_tFVMy9WkDnf1rqqPwuQLQFwBL | 
-| **Precomputed windows** (`BenignWindows`, `AttackWindows`, `.pt` tensors) | **My Drive** | https://drive.google.com/drive/folders/1XufzHBmagNbyTTXjKebQ90nN2zbgVsLe |
-| **SSL encoder weights** (`.pth`) and **XGBoost embeddings** (`.npy`) | **My Drive** | same link as above |
-| **CNN_Flag** ablation (its embeddings + its model) | **My Drive** | same link as above |
+| **Precomputed windows** (`BenignWindows`, `AttackWindows`, `.pt` tensors) | **Dropbox** | https://www.dropbox.com/scl/fo/dkud5m4i4ndwm2q4w8tzs/AGLjv3iSLA90cKHipy4g3IQ?rlkey=yb9uhpyyhs03lsinj4dcr7g27&st=10cx5eq7&dl=0 |
+| **SSL encoder weights** (`.pth`) and **XGBoost embeddings** (`.npy`) | **Dropbox** | same link as above |
+| **CNN_Flag** ablation (its embeddings + its model) | **Dropbox** | same link as above |
 
 
-**original logs → dataset Drive. Everything I generated (windows,
-weights, embeddings) → my Drive.**
+**original logs → dataset CAN MIRGU Google Drive. Everything I generated (windows,
+weights, embeddings) → Dropbox.**
 
 ## Dataset
 
@@ -80,10 +80,10 @@ main_notebooks/                  Main pipeline (run in numeric order)
   ├─ 05_XGBoost_Evaluation.ipynb
   ├─ SSL-CNN_30epochs.ipynb       Extended training (30 epochs), comparison
   ├─ models/                      Pretrained weights (.pth)  — on GitHub
-  ├─ embeddings/                  SSL embeddings (.npy)      — from my Drive
-  └─ cross_file_embeddings/       Cross-file embeddings      — from my Drive
+  ├─ embeddings/                  SSL embeddings (.npy)      — from Dropbox
+  └─ cross_file_embeddings/       Cross-file embeddings      — from Dropbox
 
-Data/                            Only Attacks_metadata.json on GitHub (rest from Drive)
+Data/                            Attacks_metadata.json on GitHub; logs from CAN-MIRGU Drive; windows from Dropbox
 CNN_Flag/                        Comparison encoder (2 Conv1d, no dilation, 15 epochs)
 src/                             Helper functions used by the EDA notebooks
 requirements.txt
@@ -93,34 +93,57 @@ README.md
 
 > On **GitHub**, `main_notebooks/` only the notebooks and `models/`
 > (weights). The `embeddings/` and `cross_file_embeddings/` folders are too large
-> for GitHub — download them from my Drive (see "Large files" below).
+> for GitHub — download them from Dropbox (see "Large files" below).
 
 ### The Data/ folder
 
 The `Data/` folder **is** on GitHub, but only `Attacks_metadata.json` is committed
-there. Everything else inside `Data/` is too large for GitHub and must be
-**downloaded from my Drive** and placed into the same folder. The full local
-layout is:
+there. The original `.log` files come from the CAN-MIRGU Google Drive. The
+precomputed windows must be **downloaded from Dropbox** and placed into the
+same folder. The full local layout is:
+
+
+### Placing the original CAN-MIRGU logs
+
+The `CAN_MIRGU_Attack_Logs` and `CAN_MIRGU_Benign_Logs` directories are
+pre-created in the repository, but the original `.log` files are not included.
+
+For the attack data, download the original CAN-MIRGU `Attack` folder and place
+the `Masquerade_attacks`, `Real_attacks`, and `Suspension_attacks` folders
+inside `Data/CAN_MIRGU_Attack_Logs/`.
+
+For the benign data, Google Drive may split the download into several ZIP files.
+These ZIP files contain different parts of the same `Benign` directory.
+Extract all parts and merge them so that the final structure is:
+
+`Data/CAN_MIRGU_Benign_Logs/Benign/Day_1 ... Day_6`
+
+Do not rename the original `.log` files.
 
 ```
 Data/
   ├─ Attacks_metadata.json       ← committed to GitHub
-  ├─ CAN_MIRGU_Attack_Logs/      ← download from the CAN-MIRGU dataset Drive
+  ├─ CAN_MIRGU_Attack_Logs/      ← original CAN-MIRGU attack data
   │   ├─ Masquerade_attacks/
   │   ├─ Real_attacks/
   │   └─ Suspension_attacks/
-  ├─ CAN_MIRGU_Benign_Logs/      ← download from the CAN-MIRGU dataset Drive
-  │                                (the 6-day collection, Day_1 … Day_6; the exact
-  │                                 subfolder layout depends on how you download)
-  ├─ Attack_Windows/             ← download from my Drive  (precomputed .pt)
-  └─ Benign_Windows/             ← download from my Drive  (precomputed .pt)
+  ├─ CAN_MIRGU_Benign_Logs/      ← original CAN-MIRGU benign data
+  │   └─ Benign/
+  │       ├─ Day_1/
+  │       ├─ Day_2/
+  │       ├─ Day_3/
+  │       ├─ Day_4/
+  │       ├─ Day_5/
+  │       └─ Day_6/
+  ├─ Attack_Windows/             ← download from Dropbox (precomputed .pt)
+  └─ Benign_Windows/             ← download from Dropbox (precomputed .pt)
 ```
 
 
-> **The original logs are NOT in my Drive.** The `CAN_MIRGU_*_Logs` folders come
+> **The original logs are NOT in Dropbox.** The `CAN_MIRGU_*_Logs` folders come
 > from the original CAN-MIRGU dataset Drive — I just downloaded them into these
 > local subfolders. Only the windows I generated (`Attack_Windows`,
-> `Benign_Windows`) live in my Drive.
+> `Benign_Windows`) live in Dropbox.
 
 
 ### The final model vs. the comparison encoders
@@ -169,9 +192,9 @@ Results in the notebooks were obtained with:
 > different backend (CPU or CUDA) can produce slightly different values than the
 > MPS run.
 
-### Large files (> 100 MB) — download from my Drive
+### Large files (> 100 MB) — download from the Dropbox link
 
-https://drive.google.com/drive/folders/1XufzHBmagNbyTTXjKebQ90nN2zbgVsLe
+https://www.dropbox.com/scl/fo/dkud5m4i4ndwm2q4w8tzs/AGLjv3iSLA90cKHipy4g3IQ?rlkey=yb9uhpyyhs03lsinj4dcr7g27&st=10cx5eq7&dl=0
 
 - Pretrained SSL weights (`.pth`)
 - XGBoost embeddings (`.npy`)

@@ -26,7 +26,6 @@ torch==2.7.1
 matplotlib==3.10.6
 tqdm==4.67.1
 json5==0.12.1
-pyarrow==21.0.0
 ipykernel==6.31.0 
 notebook==7.4.5
 jupyterlab==4.4.7 
