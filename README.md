@@ -79,24 +79,29 @@ requirements.txt
 ```
 ### 7. Download the required data and artefacts
 
-Before running the notebooks, download and place the original CAN-MIRGU logs and
-the precomputed project artefacts as described in
+After cloning, the **attack `.log` files** used by this pipeline are already
+in the repository. You do **not** need to download them from the original
+CAN-MIRGU Google Drive.
+
+You still need to download the **benign `.log` files** from that Drive and the
+precomputed artefacts from Dropbox, as described in
 [Unzip and place the files](#unzip-and-place-the-files) below.
 
 
 ## Main Structure 
-This project uses files from Original authors Drive and Dropbox.
+This project uses files from this clone, the original authors' Drive, and Dropbox.
 
 | What you need | Source | Link |
 |---|---|---|
-| **Raw `.log` files** (attack + benign) and `Attacks_metadata.json` | Original **CAN-MIRGU** dataset | https://drive.google.com/drive/folders/1uUKLEu_tFVMy9WkDnf1rqqPwuQLQFwBL | 
+| **Attack `.log` files** used by the notebooks | Already in this **clone** | `Data/CAN_MIRGU_Attack_Logs/Real_attacks/` |
+| **Benign `.log` files** | Original **CAN-MIRGU** dataset (Google Drive) | https://drive.google.com/drive/folders/1uUKLEu_tFVMy9WkDnf1rqqPwuQLQFwBL |
 | **Precomputed windows** (`BenignWindows`, `AttackWindows`, `.pt` tensors) | **Dropbox** | https://www.dropbox.com/scl/fo/dkud5m4i4ndwm2q4w8tzs/AGLjv3iSLA90cKHipy4g3IQ?rlkey=yb9uhpyyhs03lsinj4dcr7g27&st=10cx5eq7&dl=0 |
 | **SSL encoder weights** (`.pth`) and **XGBoost embeddings** (`.npy`) | **Dropbox** | same link as above |
 | **CNN_Flag** ablation (its embeddings + its model) | **Dropbox** | same link as above |
 
 
-**original logs → dataset CAN MIRGU Google Drive. Everything I generated (windows,
-weights, embeddings) → Dropbox.**
+**Attack logs used here → already on GitHub. Benign logs → CAN-MIRGU Google Drive.
+Everything I generated (windows, weights, embeddings) → Dropbox.**
 
 ## Dataset
 
@@ -119,8 +124,11 @@ Please cite the dataset as:
 ### How the CAN-MIRGU logs are organised
 
 - **Attack logs:** `Attack/Real_attacks/` plus `Attacks_metadata.json`.
+  The nine Real_attacks files used by this pipeline are already in the clone
+  under `Data/CAN_MIRGU_Attack_Logs/Real_attacks/`.
 - **Benign logs:** in the original CAN-MIRGU Drive they appear as
   `Benign/Day_1 … Day_6`, one folder per day of the 6-day collection.
+  These are **not** in the clone; download them from the Drive.
 
 **SSL pretraining uses three benign files only:**
 
@@ -146,7 +154,7 @@ main_notebooks/                  Main pipeline (run in numeric order)
   ├─ embeddings/                  SSL embeddings (.npy)      — from Dropbox
   └─ cross_file_embeddings/       Cross-file embeddings      — from Dropbox
 
-Data/                            Attacks_metadata.json on GitHub; logs from CAN-MIRGU Drive; windows from Dropbox
+Data/                            Attack logs + Attacks_metadata.json on GitHub; benign logs from CAN-MIRGU Drive; windows from Dropbox
 CNN_Flag/                        Comparison encoder (2 Conv1d, no dilation, 15 epochs)
 src/                             Helper functions used by the EDA notebooks
 requirements.txt
@@ -167,29 +175,12 @@ README.md
 Clone first, then unzip. Open the matching folder that already exists and upload
 or copy **the files** into it (not the parent ZIP folder).
 
-**CAN-MIRGU logs** (Google Drive, not Dropbox):
+**Attack logs:** already in `Data/CAN_MIRGU_Attack_Logs/Real_attacks/` after
+you clone. You do **not** need to download them from the original Drive.
 
-1. Unzip the authors' attack download. This pipeline only uses **Real attacks**.
-   Put these **8** `.log` files from the Drive into
-   `Data/CAN_MIRGU_Attack_Logs/Real_attacks/`:
-   `Steering_angle_attack.log`, `Power_steering_attack.log`,
-   `Min_speedometer_attack_1.log`, `EMS_replay_attack.log`,
-   `Steering_angle_replay.log`, `Fuzzing_random_IDs.log`,
-   `Fuzzing_valid_IDs.log`, `DoS_attack.log`.
-   You do **not** need the rest of the Real_attacks logs.
-   `Masquerade_attacks/` and `Suspension_attacks/` are in the clone (with
-   `dummy.txt`) so the original CAN-MIRGU layout is there if you want those
-   logs; they are **not required** to run the notebooks.
-
-> [!CAUTION]
-> **`Brake_warning_attack.log` is already in this clone (GitHub).**
-> Do **not** copy `Break_warning_attack.log` from the authors’ Drive.
-> That Drive filename is a typo. The notebooks only load
-> `Brake_warning_attack.log` (the file that ships with this repo).
-
-2. Unzip all benign ZIP parts (Drive may split them). Open
-   `Data/CAN_MIRGU_Benign_Logs/Benign/Day_1` … `Day_6` and put each `.log` into
-   the matching day folder.
+**Benign logs** (Google Drive): unzip all benign ZIP parts (Drive may split
+them). Open `Data/CAN_MIRGU_Benign_Logs/Benign/Day_1` … `Day_6` and put each
+`.log` into the matching day folder.
 
 **Dropbox** (windows, embeddings):
 
@@ -207,22 +198,20 @@ or copy **the files** into it (not the parent ZIP folder).
 Data/
   ├─ Attacks_metadata.json       ← already on GitHub
   ├─ CAN_MIRGU_Attack_Logs/
-  │   ├─ Masquerade_attacks/      ← optional (not used by the notebooks)
-  │   ├─ Real_attacks/            ← 8 logs from Drive + Brake_warning already on GitHub
-  │   └─ Suspension_attacks/      ← optional (not used by the notebooks)
-  ├─ CAN_MIRGU_Benign_Logs/      ← unzip benign .log files here
+  │   └─ Real_attacks/            ← 9 attack logs already on GitHub
+  ├─ CAN_MIRGU_Benign_Logs/      ← unzip benign .log files from Drive here
   │   └─ Benign/Day_1 … Day_6/
-  ├─ Attack_Windows/             ← unzip attack .pt files here
+  ├─ Attack_Windows/             ← unzip attack .pt files from Dropbox here
   └─ Benign_Windows/
-      ├─ BenignDay3/             ← unzip day-3 .pt files here
+      ├─ BenignDay3/             ← unzip day-3 .pt files from Dropbox here
       ├─ BenignDay5/
       └─ BenignDay6/
 ```
 
-> **Most original logs are NOT in Dropbox or GitHub.** They come from the
-> CAN-MIRGU Google Drive. The exception is `Brake_warning_attack.log`, which
-> is on GitHub (see the caution above). Only the windows and embeddings I
-> generated are in Dropbox.
+> After cloning, **do not download the attack logs from the original Drive.**
+> They are already in this repository. You still need the **benign `.log`
+> files** from the CAN-MIRGU Google Drive, and the windows and embeddings
+> from Dropbox.
 
 
 ### The final model vs. the comparison encoders
@@ -246,7 +235,7 @@ Run the notebooks in the order of their number prefix.
 
 | Notebook | Input it needs |
 |---|---|
-| `01_Attack_EDA.ipynb` | Attack `.log` files + `Attacks_metadata.json` |
+| `01_Attack_EDA.ipynb` | Attack `.log` files + `Attacks_metadata.json` (already in the clone) |
 | `02_Benign_EDA.ipynb` | One benign `.log` |
 | `02_File_CrossValidation.ipynb` | All 12 benign `.log` files |
 | `03_Data_Preparation.ipynb` | Logs → produces `.pt` windows |
