@@ -106,10 +106,16 @@ or copy **the files** into it (not the parent ZIP folder).
 
 **CAN-MIRGU logs** (Google Drive, not Dropbox):
 
-1. Unzip the authors' attack download. Open
-   `Data/CAN_MIRGU_Attack_Logs/Masquerade_attacks/`,
-   `Real_attacks/`, and `Suspension_attacks/` (already in the clone) and put the
-   `.log` files into the matching folder.
+1. Unzip the authors' attack download. This pipeline only uses **Real attacks**,
+   and only these **9** `.log` files in `Data/CAN_MIRGU_Attack_Logs/Real_attacks/`:
+   `Steering_angle_attack.log`, `Brake_warning_attack.log`,
+   `Power_steering_attack.log`, `Min_speedometer_attack_1.log`,
+   `EMS_replay_attack.log`, `Steering_angle_replay.log`,
+   `Fuzzing_random_IDs.log`, `Fuzzing_valid_IDs.log`, `DoS_attack.log`.
+   You do **not** need the rest of the Real_attacks logs.
+   `Masquerade_attacks/` and `Suspension_attacks/` are in the clone (with
+   `dummy.txt`) so the original CAN-MIRGU layout is there if you want those
+   logs; they are **not required** to run the notebooks.
 2. Unzip all benign ZIP parts (Drive may split them). Open
    `Data/CAN_MIRGU_Benign_Logs/Benign/Day_1` … `Day_6` and put each `.log` into
    the matching day folder.
@@ -129,10 +135,10 @@ or copy **the files** into it (not the parent ZIP folder).
 ```
 Data/
   ├─ Attacks_metadata.json       ← already on GitHub
-  ├─ CAN_MIRGU_Attack_Logs/      ← unzip attack .log files here
-  │   ├─ Masquerade_attacks/
-  │   ├─ Real_attacks/
-  │   └─ Suspension_attacks/
+  ├─ CAN_MIRGU_Attack_Logs/
+  │   ├─ Masquerade_attacks/      ← optional (not used by the notebooks)
+  │   ├─ Real_attacks/            ← only the 9 .log files listed above
+  │   └─ Suspension_attacks/      ← optional (not used by the notebooks)
   ├─ CAN_MIRGU_Benign_Logs/      ← unzip benign .log files here
   │   └─ Benign/Day_1 … Day_6/
   ├─ Attack_Windows/             ← unzip attack .pt files here
