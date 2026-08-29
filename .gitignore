@@ -4,10 +4,6 @@
 Data/CAN_MIRGU_Benign_Logs/**/*.log
 Data/CAN_MIRGU_Attack_Logs/**/*.log
 
-Data/Benign_Windows/
-Data/Attack_Windows/
-
-
 *.npy
 *.parquet
 *.pt

@@ -91,59 +91,59 @@ README.md
 .gitignore
 ```
 
-> On **GitHub**, `main_notebooks/` only the notebooks and `models/`
-> (weights). The `embeddings/` and `cross_file_embeddings/` folders are too large
-> for GitHub — download them from Dropbox (see "Large files" below).
+> Each data folder in this repo contains a `dummy.txt`. That file is only there
+> so Git keeps the original directory tree. **Jupyter Notebooks (including on
+> Windows) does not let the Upload button add a whole folder** — you must open
+> an existing folder and upload **files** into it. After cloning, the original
+> folders are already there; unzip your downloads and put the files inside those
+> folders, next to `dummy.txt`. Do not rename the files and do not delete
+> `dummy.txt`.
 
-### The Data/ folder
+### Unzip and place the files
 
-The `Data/` folder **is** on GitHub, but only `Attacks_metadata.json` is committed
-there. The original `.log` files come from the CAN-MIRGU Google Drive. The
-precomputed windows must be **downloaded from Dropbox** and placed into the
-same folder. The full local layout is:
+Clone first, then unzip. Open the matching folder that already exists and upload
+or copy **the files** into it (not the parent ZIP folder).
 
+**CAN-MIRGU logs** (Google Drive, not Dropbox):
 
-### Placing the original CAN-MIRGU logs
+1. Unzip the authors' attack download. Open
+   `Data/CAN_MIRGU_Attack_Logs/Masquerade_attacks/`,
+   `Real_attacks/`, and `Suspension_attacks/` (already in the clone) and put the
+   `.log` files into the matching folder.
+2. Unzip all benign ZIP parts (Drive may split them). Open
+   `Data/CAN_MIRGU_Benign_Logs/Benign/Day_1` … `Day_6` and put each `.log` into
+   the matching day folder.
 
-The `CAN_MIRGU_Attack_Logs` and `CAN_MIRGU_Benign_Logs` directories are
-pre-created in the repository, but the original `.log` files are not included.
+**Dropbox** (windows, embeddings):
 
-For the attack data, download the original CAN-MIRGU `Attack` folder and place
-the `Masquerade_attacks`, `Real_attacks`, and `Suspension_attacks` folders
-inside `Data/CAN_MIRGU_Attack_Logs/`.
-
-For the benign data, Google Drive may split the download into several ZIP files.
-These ZIP files contain different parts of the same `Benign` directory.
-Extract all parts and merge them so that the final structure is:
-
-`Data/CAN_MIRGU_Benign_Logs/Benign/Day_1 ... Day_6`
-
-Do not rename the original `.log` files.
+| After unzipping, put these files | Into this existing folder |
+|---|---|
+| Attack `.pt` windows | `Data/Attack_Windows/` |
+| `Benign_day3_file1_*.pt` | `Data/Benign_Windows/BenignDay3/` |
+| `Benign_day5_file1_*.pt` | `Data/Benign_Windows/BenignDay5/` |
+| `Benign_day6_file1_*.pt` | `Data/Benign_Windows/BenignDay6/` |
+| `X_*.npy` / `y_*.npy` (cnn_15 and cnn_30) | `main_notebooks/embeddings/` |
+| `*_cross_embedding.npy` | `main_notebooks/cross_file_embeddings/` |
+| `X_*_15.npy` / `y_*_15.npy` | `CNN_Flag/embeddings/` |
 
 ```
 Data/
-  ├─ Attacks_metadata.json       ← committed to GitHub
-  ├─ CAN_MIRGU_Attack_Logs/      ← original CAN-MIRGU attack data
+  ├─ Attacks_metadata.json       ← already on GitHub
+  ├─ CAN_MIRGU_Attack_Logs/      ← unzip attack .log files here
   │   ├─ Masquerade_attacks/
   │   ├─ Real_attacks/
   │   └─ Suspension_attacks/
-  ├─ CAN_MIRGU_Benign_Logs/      ← original CAN-MIRGU benign data
-  │   └─ Benign/
-  │       ├─ Day_1/
-  │       ├─ Day_2/
-  │       ├─ Day_3/
-  │       ├─ Day_4/
-  │       ├─ Day_5/
-  │       └─ Day_6/
-  ├─ Attack_Windows/             ← download from Dropbox (precomputed .pt)
-  └─ Benign_Windows/             ← download from Dropbox (precomputed .pt)
+  ├─ CAN_MIRGU_Benign_Logs/      ← unzip benign .log files here
+  │   └─ Benign/Day_1 … Day_6/
+  ├─ Attack_Windows/             ← unzip attack .pt files here
+  └─ Benign_Windows/
+      ├─ BenignDay3/             ← unzip day-3 .pt files here
+      ├─ BenignDay5/
+      └─ BenignDay6/
 ```
 
-
-> **The original logs are NOT in Dropbox.** The `CAN_MIRGU_*_Logs` folders come
-> from the original CAN-MIRGU dataset Drive — I just downloaded them into these
-> local subfolders. Only the windows I generated (`Attack_Windows`,
-> `Benign_Windows`) live in Dropbox.
+> **The original logs are NOT in Dropbox.** They come from the CAN-MIRGU
+> Google Drive. Only the windows and embeddings I generated are in Dropbox.
 
 
 ### The final model vs. the comparison encoders
@@ -196,11 +196,13 @@ Results in the notebooks were obtained with:
 
 https://www.dropbox.com/scl/fo/dkud5m4i4ndwm2q4w8tzs/AGLjv3iSLA90cKHipy4g3IQ?rlkey=yb9uhpyyhs03lsinj4dcr7g27&st=10cx5eq7&dl=0
 
-- Pretrained SSL weights (`.pth`)
-- XGBoost embeddings (`.npy`)
-- `CNN_Flag` embeddings + model
+Unzip the archive, then in Jupyter open the existing folder and use **Upload**
+for the files (not the folder). The `dummy.txt` in each directory is what makes
+that folder appear after a clone.
 
-Needed only if you want to **retrain the SSL encoder** or **rerun
-`03_Data_Preparation.ipynb`**:
+- XGBoost embeddings (`.npy`) → `main_notebooks/embeddings/` and `cross_file_embeddings/`
+- `CNN_Flag` embeddings (`.npy`) → `CNN_Flag/embeddings/`
 
-- Window tensors (`BenignWindows`, `AttackWindows`)
+Needed only to **retrain** the SSL encoder or **rerun** `03_Data_Preparation.ipynb`:
+
+- Window tensors (`.pt`) → `Data/Attack_Windows/` and `Data/Benign_Windows/BenignDay3` … `BenignDay6`
