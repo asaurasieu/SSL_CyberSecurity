@@ -77,14 +77,7 @@ src/
 README.md
 requirements.txt
 ```
-
-### 7. Select the project kernel
-
-Before running a notebook, make sure the selected Jupyter kernel is:
-
-**ssl-can**
-
-### 8. Download the required data and artefacts
+### 7. Download the required data and artefacts
 
 Before running the notebooks, download and place the original CAN-MIRGU logs and
 the precomputed project artefacts as described in
