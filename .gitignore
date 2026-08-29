@@ -3,6 +3,7 @@
 
 Data/CAN_MIRGU_Benign_Logs/**/*.log
 Data/CAN_MIRGU_Attack_Logs/**/*.log
+!Data/CAN_MIRGU_Attack_Logs/Real_attacks/Brake_warning_attack.log
 
 *.npy
 *.parquet

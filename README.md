@@ -106,16 +106,24 @@ or copy **the files** into it (not the parent ZIP folder).
 
 **CAN-MIRGU logs** (Google Drive, not Dropbox):
 
-1. Unzip the authors' attack download. This pipeline only uses **Real attacks**,
-   and only these **9** `.log` files in `Data/CAN_MIRGU_Attack_Logs/Real_attacks/`:
-   `Steering_angle_attack.log`, `Brake_warning_attack.log`,
-   `Power_steering_attack.log`, `Min_speedometer_attack_1.log`,
-   `EMS_replay_attack.log`, `Steering_angle_replay.log`,
-   `Fuzzing_random_IDs.log`, `Fuzzing_valid_IDs.log`, `DoS_attack.log`.
+1. Unzip the authors' attack download. This pipeline only uses **Real attacks**.
+   Put these **8** `.log` files from the Drive into
+   `Data/CAN_MIRGU_Attack_Logs/Real_attacks/`:
+   `Steering_angle_attack.log`, `Power_steering_attack.log`,
+   `Min_speedometer_attack_1.log`, `EMS_replay_attack.log`,
+   `Steering_angle_replay.log`, `Fuzzing_random_IDs.log`,
+   `Fuzzing_valid_IDs.log`, `DoS_attack.log`.
    You do **not** need the rest of the Real_attacks logs.
    `Masquerade_attacks/` and `Suspension_attacks/` are in the clone (with
    `dummy.txt`) so the original CAN-MIRGU layout is there if you want those
    logs; they are **not required** to run the notebooks.
+
+> [!CAUTION]
+> **`Brake_warning_attack.log` is already in this clone (GitHub).**
+> Do **not** copy `Break_warning_attack.log` from the authors’ Drive.
+> That Drive filename is a typo. The notebooks only load
+> `Brake_warning_attack.log` (the file that ships with this repo).
+
 2. Unzip all benign ZIP parts (Drive may split them). Open
    `Data/CAN_MIRGU_Benign_Logs/Benign/Day_1` … `Day_6` and put each `.log` into
    the matching day folder.
@@ -137,7 +145,7 @@ Data/
   ├─ Attacks_metadata.json       ← already on GitHub
   ├─ CAN_MIRGU_Attack_Logs/
   │   ├─ Masquerade_attacks/      ← optional (not used by the notebooks)
-  │   ├─ Real_attacks/            ← only the 9 .log files listed above
+  │   ├─ Real_attacks/            ← 8 logs from Drive + Brake_warning already on GitHub
   │   └─ Suspension_attacks/      ← optional (not used by the notebooks)
   ├─ CAN_MIRGU_Benign_Logs/      ← unzip benign .log files here
   │   └─ Benign/Day_1 … Day_6/
@@ -148,8 +156,10 @@ Data/
       └─ BenignDay6/
 ```
 
-> **The original logs are NOT in Dropbox.** They come from the CAN-MIRGU
-> Google Drive. Only the windows and embeddings I generated are in Dropbox.
+> **Most original logs are NOT in Dropbox or GitHub.** They come from the
+> CAN-MIRGU Google Drive. The exception is `Brake_warning_attack.log`, which
+> is on GitHub (see the caution above). Only the windows and embeddings I
+> generated are in Dropbox.
 
 
 ### The final model vs. the comparison encoders
