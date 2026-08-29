@@ -16,7 +16,7 @@ Master's thesis code for detecting injection attacks on automotive CAN bus traff
 ```bash
 conda create -n ssl-can python=3.13.9 -y
 conda activate ssl-can
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 python -m ipykernel install --user --name ssl-can --display-name "ssl-can"
 ```
 ---
