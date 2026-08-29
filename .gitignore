@@ -4,6 +4,14 @@
 Data/CAN_MIRGU_Benign_Logs/**/*.log
 Data/CAN_MIRGU_Attack_Logs/**/*.log
 !Data/CAN_MIRGU_Attack_Logs/Real_attacks/Brake_warning_attack.log
+!Data/CAN_MIRGU_Attack_Logs/Real_attacks/DoS_attack.log
+!Data/CAN_MIRGU_Attack_Logs/Real_attacks/Fuzzing_valid_IDs.log
+!Data/CAN_MIRGU_Attack_Logs/Real_attacks/Fuzzing_random_IDs.log
+!Data/CAN_MIRGU_Attack_Logs/Real_attacks/EMS_replay_attack.log
+!Data/CAN_MIRGU_Attack_Logs/Real_attacks/Steering_angle_attack.log
+!Data/CAN_MIRGU_Attack_Logs/Real_attacks/Steering_angle_replay.log
+!Data/CAN_MIRGU_Attack_Logs/Real_attacks/Power_steering_attack.log
+!Data/CAN_MIRGU_Attack_Logs/Real_attacks/Min_speedometer_attack_1.log
 
 *.npy
 *.parquet
