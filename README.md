@@ -13,13 +13,83 @@ Master's thesis code for detecting injection attacks on automotive CAN bus traff
 
 ## Installation
 
+### Windows / macOS — Jupyter Notebook
+
+#### Prerequisites
+
+- Anaconda or Miniconda
+- Git
+
+### 1. Open a terminal
+
+- **Windows:** open **Anaconda Prompt**
+- **macOS:** open **Terminal**
+
+### 2. Clone the repository
+
+Run the following commands from the folder where you want to save the project:
+
+```bash
+git clone https://github.com/asaurasieu/SSL_CyberSecurity.git
+cd SSL_CyberSecurity
+```
+
+### 3. Create and activate the Conda environment
+
 ```bash
 conda create -n ssl-can python=3.13.9 -y
 conda activate ssl-can
+```
+
+This creates an isolated Python environment called `ssl-can` using Python 3.13.9.
+
+### 4. Install the required packages
+
+```bash
 python -m pip install -r requirements.txt
+```
+
+This installs the package versions specified in `requirements.txt` inside the `ssl-can` environment.
+
+### 5. Register the environment as a Jupyter kernel
+
+```bash
 python -m ipykernel install --user --name ssl-can --display-name "ssl-can"
 ```
----
+
+This makes the `ssl-can` environment available as a selectable kernel inside Jupyter Notebook.
+
+### 6. Start Jupyter Notebook
+
+From the repository root, run:
+
+```bash
+jupyter notebook
+```
+
+Jupyter will open in your browser and should display the repository folders, including:
+
+```
+CNN_Flag/
+Data/
+main_notebooks/
+src/
+README.md
+requirements.txt
+```
+
+### 7. Select the project kernel
+
+Before running a notebook, make sure the selected Jupyter kernel is:
+
+**ssl-can**
+
+### 8. Download the required data and artefacts
+
+Before running the notebooks, download and place the original CAN-MIRGU logs and
+the precomputed project artefacts as described in
+[Unzip and place the files](#unzip-and-place-the-files) below.
+
 
 ## Main Structure 
 This project uses files from Original authors Drive and Dropbox.
